@@ -207,18 +207,18 @@ function App() {
             padding: "1rem",
             borderBottom: "1px solid rgb(221, 221, 221)"
           }}>
-          <span> Filtros</span>
-          <img
-            src={resetIcon}
-            alt="Reset Filters"
-            style={{ width: "20px", height: "20px", cursor: "pointer" }}
-            onClick={() => {
-              setFilter("all");
-              setSelectedMarca("all");
-              setSelectedCantidad("all");
-              setSearch("");
-            }}
-          />
+            <span> Filtros</span>
+            <img
+              src={resetIcon}
+              alt="Reset Filters"
+              style={{ width: "20px", height: "20px", cursor: "pointer" }}
+              onClick={() => {
+                setFilter("all");
+                setSelectedMarca("all");
+                setSelectedCantidad("all");
+                setSearch("");
+              }}
+            />
           </div>
           <div style={{fontSize: "1.2rem", fontWeight: "bold", padding: "1rem"}}>Género</div>
           <div
@@ -306,16 +306,22 @@ function App() {
           </select>
 
           <div style={{fontSize: "1.2rem", fontWeight: "bold", padding: "0 1rem 0.5rem"}}>Nombre</div>
-          <input type="text"
-            placeholder="Escribe un nombre..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            style={{
-              width: "100%",
-              padding: "8px",
-              borderRadius: "5px",
-              border: "1px solid #ccc",
-            }}/>
+          <div style={{ width: '100%', boxSizing: 'border-box', padding: 0, margin: 0 }}>
+            <input
+              type="text"
+              placeholder="Escribe un nombre..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              style={{
+                width: '100%',
+                boxSizing: 'border-box',
+                padding: '8px',
+                borderRadius: '5px',
+                border: '1px solid #ccc',
+                margin: 0
+              }}
+            />
+          </div>
         </div>
         {/* Cards */}
         <div className="cards-grid">
