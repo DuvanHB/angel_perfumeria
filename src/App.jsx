@@ -94,7 +94,7 @@ function App() {
           .sidebar {
             min-width: 0;
             position: sticky;
-            top: 100px;
+            top: 120px;
             align-self: start;
             z-index: 10;
             background: #fff;
@@ -186,7 +186,8 @@ function App() {
         <div className="sidebar" ref={sidebarRef}>
           {/* Mobile close button */}
           <span className="sidebar-close" style={{ display: window.innerWidth <= 600 ? "block" : "none" }} onClick={() => setShowSidebar(false)}>&times;</span>
-          <div style={{ fontSize: "1.5rem", fontWeight: "bold" }}>Filtros</div>
+          <div style={{ fontSize: "1.5rem", fontWeight: "bold", padding: "1rem" }}>Filtros
+          </div>
           <div
             style={{
               display: "flex",
