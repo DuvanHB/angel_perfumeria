@@ -1,10 +1,16 @@
 import { useEffect, useState } from "react";
 import Papa from "papaparse";
 
+// Import your icons
+import hombreIcon from "./assets/img/male.png";
+import mujerIcon from "./assets/img/female.png";
+import unisexIcon from "./assets/img/unisex.png";
+// import allIcon from "./assets/img/all.png"; // optional, for "Todos"
+
 function App() {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState("all");
-  const [search, setSearch] = useState(""); // 👈 new state
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const fetchSheet = async () => {
@@ -21,7 +27,7 @@ function App() {
     fetchSheet();
   }, []);
 
-  // Filtered data by genero + search
+  // Filtered data
   const filteredData = data.filter((item) => {
     const matchesGenero =
       filter === "all" || item.Genero?.toLowerCase() === filter;
@@ -29,9 +35,9 @@ function App() {
     return matchesGenero && matchesSearch;
   });
 
-  // Function for WhatsApp link
+  // WhatsApp link
   const getWhatsappLink = (nombre) => {
-    const phone = "573001112233"; // replace with your WhatsApp number
+    const phone = "573001112233";
     const message = encodeURIComponent(`Hola, estoy interesado en el perfume ${nombre}`);
     return `https://wa.me/${phone}?text=${message}`;
   };
@@ -48,15 +54,7 @@ function App() {
     >
       {/* Sidebar Filters */}
       <div>
-        <h3>Filtrar por género</h3>
-        <ul style={{ listStyle: "none", padding: 0 }}>
-          <li><button onClick={() => setFilter("all")}>Todos</button></li>
-          <li><button onClick={() => setFilter("masculino")}>Hombre</button></li>
-          <li><button onClick={() => setFilter("femenino")}>Mujer</button></li>
-          <li><button onClick={() => setFilter("unisex")}>Unisex</button></li>
-        </ul>
-
-        <h3>Buscar por nombre</h3>
+        <h3>Filtros</h3>
         <input
           type="text"
           placeholder="Escribe un nombre..."
@@ -70,6 +68,68 @@ function App() {
             border: "1px solid #ccc",
           }}
         />
+        
+
+        {/* Buttons in a row */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-around",
+            marginBottom: "20px",
+          }}
+        >
+          <button
+            onClick={() => setFilter("all")}
+            style={{
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              textAlign: "center",
+            }}
+          >
+            {/* <img src={allIcon} alt="Todos" style={{ width: "40px", height: "40px" }} /> */}
+            <div>Todos</div>
+          </button>
+
+          <button
+            onClick={() => setFilter("hombre")}
+            style={{
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              textAlign: "center",
+            }}
+          >
+            <img src={hombreIcon} alt="Hombre" style={{ width: "40px", height: "40px" }} />
+            <div>Hombre</div>
+          </button>
+
+          <button
+            onClick={() => setFilter("mujer")}
+            style={{
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              textAlign: "center",
+            }}
+          >
+            <img src={mujerIcon} alt="Mujer" style={{ width: "40px", height: "40px" }} />
+            <div>Mujer</div>
+          </button>
+
+          <button
+            onClick={() => setFilter("unisex")}
+            style={{
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              textAlign: "center",
+            }}
+          >
+            <img src={unisexIcon} alt="Unisex" style={{ width: "40px", height: "40px" }} />
+            <div>Unisex</div>
+          </button>
+        </div>
       </div>
 
       {/* Cards */}
