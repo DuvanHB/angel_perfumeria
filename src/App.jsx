@@ -38,7 +38,7 @@ function App() {
 
   // WhatsApp link
   const getWhatsappLink = (nombre) => {
-    const phone = "573001112233";
+    const phone = "573195769790";
     const message = encodeURIComponent(`Hola, estoy interesado en el perfume ${nombre}`);
     return `https://wa.me/${phone}?text=${message}`;
   };
@@ -55,7 +55,7 @@ function App() {
     >
       {/* Sidebar Filters */}
       <div>
-        <h3>Filtros</h3>
+        <div style={{ fontSize: "1.5rem", fontWeight: "bold" }}>Filtros</div>
         <input
           type="text"
           placeholder="Escribe un nombre..."
@@ -151,6 +151,7 @@ function App() {
               padding: "15px",
               textAlign: "center",
               boxShadow: "0px 2px 5px rgba(0,0,0,0.1)",
+              background: "#fff"
             }}
           >
             {item.Imagen && (
