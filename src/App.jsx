@@ -281,12 +281,14 @@ function App() {
             value={selectedMarca}
             onChange={e => setSelectedMarca(e.target.value)}
             style={{
-              width: "100%",
-              padding: "8px",
-              marginBottom: "10px",
+              width: "calc(100% - 2rem)",
+              padding: "10px",
+              margin: "0 1rem 10px 1rem",
               borderRadius: "5px",
               border: "1px solid #ccc",
-              fontSize: "1rem"
+              fontSize: "1rem",
+              height: "40px",
+              boxSizing: "border-box"
             }}
           >
             <option value="all">Todas las marcas</option>
@@ -300,12 +302,14 @@ function App() {
             value={selectedCantidad}
             onChange={e => setSelectedCantidad(e.target.value)}
             style={{
-              width: "100%",
-              padding: "8px",
-              marginBottom: "10px",
+              width: "calc(100% - 2rem)",
+              padding: "10px",
+              margin: "0 1rem 10px 1rem",
               borderRadius: "5px",
               border: "1px solid #ccc",
-              fontSize: "1rem"
+              fontSize: "1rem",
+              height: "40px",
+              boxSizing: "border-box"
             }}
           >
             <option value="all">Todas las cantidades</option>
@@ -318,16 +322,17 @@ function App() {
           <div style={{ width: '100%', boxSizing: 'border-box', padding: 0, margin: 0 }}>
             <input
               type="text"
-              placeholder="Escribe un nombre..."
+              placeholder="Nombre"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               style={{
-                width: '100%',
+                width: 'calc(100% - 2rem)',
                 boxSizing: 'border-box',
-                padding: '8px',
+                padding: '10px',
                 borderRadius: '5px',
                 border: '1px solid #ccc',
-                margin: 0
+                margin: '0 1rem 10px 1rem',
+                height: '40px'
               }}
             />
           </div>
