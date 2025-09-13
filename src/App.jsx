@@ -14,6 +14,7 @@ function App() {
   const [filter, setFilter] = useState("all");
   const [search, setSearch] = useState("");
   const [showSidebar, setShowSidebar] = useState(false); // For mobile burger
+  const [selectedMarca, setSelectedMarca] = useState("all");
   const sidebarRef = useRef(null);
 
   useEffect(() => {
@@ -28,11 +29,16 @@ function App() {
     fetchSheet();
   }, []);
 
+  // Get distinct marcas
+  const marcas = Array.from(new Set(data.map(item => item.Marca).filter(Boolean)));
+  // Filter data
   const filteredData = data.filter((item) => {
     const matchesGenero =
       filter === "all" || item.Genero?.toLowerCase() === filter;
     const matchesSearch = item.Nombre?.toLowerCase().includes(search.toLowerCase());
-    return matchesGenero && matchesSearch;
+    const matchesMarca =
+      selectedMarca === "all" || item.Marca === selectedMarca;
+    return matchesGenero && matchesSearch && matchesMarca;
   });
 
   const getWhatsappLink = (nombre) => {
@@ -166,7 +172,7 @@ function App() {
       </style>
       {/* Sticky Header */}
       <header className="header">
-        <div style={{ display: "flex", alignItems: "center" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
           <button className="burger" onClick={() => setShowSidebar(true)}>
             &#9776;
           </button>
@@ -234,6 +240,23 @@ function App() {
             
           </div>
 
+          <select
+            value={selectedMarca}
+            onChange={e => setSelectedMarca(e.target.value)}
+            style={{
+              width: "100%",
+              padding: "8px",
+              marginBottom: "10px",
+              borderRadius: "5px",
+              border: "1px solid #ccc",
+              fontSize: "1rem"
+            }}
+          >
+            <option value="all">Todas las marcas</option>
+            {marcas.map((marca, idx) => (
+              <option key={idx} value={marca}>{marca}</option>
+            ))}
+          </select>
           <input
             type="text"
             placeholder="Escribe un nombre..."
