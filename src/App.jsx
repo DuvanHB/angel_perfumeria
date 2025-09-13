@@ -327,18 +327,7 @@ function App() {
                 {item.Nombre}
               </h4>
               <p>
-                {item.Marca} | {item.Genero} |{" "}
-                <a
-                  href={getWhatsappLink(item.Nombre)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img
-                    src={callIcon}
-                    alt="WhatsApp"
-                    style={{ width: "24px", height: "24px", verticalAlign: "middle" }}
-                  />
-                </a>
+                {item.Marca} | {item.Genero} | {item.Cantidad}ml
               </p>
             </div>
           ))}
