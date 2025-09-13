@@ -4,6 +4,7 @@ import Papa from "papaparse";
 function App() {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState("all");
+  const [search, setSearch] = useState(""); // 👈 new state
 
   useEffect(() => {
     const fetchSheet = async () => {
@@ -14,16 +15,19 @@ function App() {
       const text = await response.text();
 
       const result = Papa.parse(text, { header: true });
-      console.log("Parsed data:", result.data); // 👀 Check here
       setData(result.data);
     };
 
     fetchSheet();
   }, []);
 
-  // Filtered data
-  const filteredData =
-    filter === "all" ? data : data.filter((item) => item.Genero?.toLowerCase() === filter);
+  // Filtered data by genero + search
+  const filteredData = data.filter((item) => {
+    const matchesGenero =
+      filter === "all" || item.Genero?.toLowerCase() === filter;
+    const matchesSearch = item.Nombre?.toLowerCase().includes(search.toLowerCase());
+    return matchesGenero && matchesSearch;
+  });
 
   // Function for WhatsApp link
   const getWhatsappLink = (nombre) => {
@@ -33,9 +37,17 @@ function App() {
   };
 
   return (
-    <div style={{ display: "flex", padding: "20px" }}>
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "30% 70%",
+        gap: "20px",
+        flexGrow: 1,
+        padding: "20px",
+      }}
+    >
       {/* Sidebar Filters */}
-      <aside style={{ width: "200px", marginRight: "20px" }}>
+      <div>
         <h3>Filtrar por género</h3>
         <ul style={{ listStyle: "none", padding: 0 }}>
           <li><button onClick={() => setFilter("all")}>Todos</button></li>
@@ -43,10 +55,32 @@ function App() {
           <li><button onClick={() => setFilter("femenino")}>Mujer</button></li>
           <li><button onClick={() => setFilter("unisex")}>Unisex</button></li>
         </ul>
-      </aside>
+
+        <h3>Buscar por nombre</h3>
+        <input
+          type="text"
+          placeholder="Escribe un nombre..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          style={{
+            width: "100%",
+            padding: "8px",
+            marginTop: "10px",
+            borderRadius: "5px",
+            border: "1px solid #ccc",
+          }}
+        />
+      </div>
 
       {/* Cards */}
-      <main style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px", flexGrow: 1 }}>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: "20px",
+          flexGrow: 1,
+        }}
+      >
         {filteredData.map((item, i) => (
           <div
             key={i}
@@ -66,7 +100,9 @@ function App() {
               />
             )}
             <h4>{item.Nombre}</h4>
-            <p>{item.Marca} | {item.Genero}</p>
+            <p>
+              {item.Marca} | {item.Genero}
+            </p>
             <a
               href={getWhatsappLink(item.Nombre)}
               target="_blank"
@@ -85,7 +121,7 @@ function App() {
             </a>
           </div>
         ))}
-      </main>
+      </div>
     </div>
   );
 }
