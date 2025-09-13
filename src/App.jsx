@@ -16,6 +16,7 @@ function App() {
   const [search, setSearch] = useState("");
   const [showSidebar, setShowSidebar] = useState(false); // For mobile burger
   const [selectedMarca, setSelectedMarca] = useState("all");
+  const [selectedCantidad, setSelectedCantidad] = useState("all");
   const sidebarRef = useRef(null);
 
   useEffect(() => {
@@ -32,6 +33,8 @@ function App() {
 
   // Get distinct marcas
   const marcas = Array.from(new Set(data.map(item => item.Marca).filter(Boolean)));
+  // Get distinct cantidades
+  const cantidades = Array.from(new Set(data.map(item => item.Cantidad).filter(Boolean)));
   // Filter data
   const filteredData = data.filter((item) => {
     const matchesGenero =
@@ -39,7 +42,9 @@ function App() {
     const matchesSearch = item.Nombre?.toLowerCase().includes(search.toLowerCase());
     const matchesMarca =
       selectedMarca === "all" || item.Marca === selectedMarca;
-    return matchesGenero && matchesSearch && matchesMarca;
+    const matchesCantidad =
+      selectedCantidad === "all" || String(item.Cantidad) === String(selectedCantidad);
+    return matchesGenero && matchesSearch && matchesMarca && matchesCantidad;
   });
 
   const getWhatsappLink = (nombre) => {
@@ -274,6 +279,23 @@ function App() {
             <option value="all">Todas las marcas</option>
             {marcas.map((marca, idx) => (
               <option key={idx} value={marca}>{marca}</option>
+            ))}
+          </select>
+          <select
+            value={selectedCantidad}
+            onChange={e => setSelectedCantidad(e.target.value)}
+            style={{
+              width: "100%",
+              padding: "8px",
+              marginBottom: "10px",
+              borderRadius: "5px",
+              border: "1px solid #ccc",
+              fontSize: "1rem"
+            }}
+          >
+            <option value="all">Todas las cantidades</option>
+            {cantidades.map((cantidad, idx) => (
+              <option key={idx} value={cantidad}>{cantidad}ml</option>
             ))}
           </select>
           <input
