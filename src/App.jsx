@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useRef } from "react";
+import instagramIcon from "./assets/img/male.png"; // Add your Instagram icon to assets/img/
 import Papa from "papaparse";
 import hombreIcon from "./assets/img/male.png";
 import mujerIcon from "./assets/img/female.png";
@@ -9,6 +11,8 @@ function App() {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState("all");
   const [search, setSearch] = useState("");
+  const [showSidebar, setShowSidebar] = useState(false); // For mobile burger
+  const sidebarRef = useRef(null);
 
   useEffect(() => {
     const fetchSheet = async () => {
@@ -47,6 +51,33 @@ function App() {
             padding: 0;
             box-sizing: border-box;
           }
+          .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 30px;
+            min-height: 60px;
+          }
+          .header-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #222;
+            letter-spacing: 1px;
+          }
+          .header-icons {
+            display: flex;
+            gap: 16px;
+          }
+          .header-icons img {
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+          }
           .main-grid {
             display: grid;
             grid-template-columns: 300px 1fr;
@@ -59,14 +90,29 @@ function App() {
           }
           .sidebar {
             min-width: 0;
+            position: sticky;
+            top: 70px;
+            align-self: start;
+            z-index: 10;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-radius: 10px;
+            padding-bottom: 20px;
+          }
+          .burger {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            margin-right: 10px;
           }
           .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
-            width: 95%;
+            width: 96%;
             margin: 0 auto;
-            padding-top: 1rem;
           }
           @media (max-width: 900px) {
             .main-grid {
@@ -75,23 +121,68 @@ function App() {
               padding: 10px;
             }
             .sidebar {
+              position: static;
               margin-bottom: 20px;
+              box-shadow: none;
             }
           }
           @media (max-width: 600px) {
+            .main-grid {
+              padding: 5px;
+            }
             .cards-grid {
               grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
               gap: 10px;
             }
-            .main-grid {
-              padding: 5px;
+            .burger {
+              display: block;
+            }
+            .sidebar {
+              display: ${showSidebar ? "block" : "none"};
+              position: fixed;
+              top: 60px;
+              left: 0;
+              width: 80vw;
+              max-width: 350px;
+              height: 100vh;
+              overflow-y: auto;
+              background: #fff;
+              box-shadow: 2px 0 8px rgba(0,0,0,0.08);
+              z-index: 200;
+              margin-bottom: 0;
+            }
+            .sidebar-close {
+              display: block;
+              text-align: right;
+              padding: 10px;
+              font-size: 1.5rem;
+              cursor: pointer;
             }
           }
         `}
       </style>
+      {/* Sticky Header */}
+      <header className="header">
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <button className="burger" onClick={() => setShowSidebar(true)}>
+            &#9776;
+          </button>
+          <span className="header-title">Angel perfumería</span>
+        </div>
+        <div className="header-icons">
+          <a href="https://wa.me/573195769790" target="_blank" rel="noopener noreferrer">
+            <img src={whatsappIcon} alt="WhatsApp" />
+          </a>
+          <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">
+            <img src={instagramIcon} alt="Instagram" />
+          </a>
+        </div>
+      </header>
       <div className="main-grid">
         {/* Sidebar Filters */}
-        <div className="sidebar">
+        <div className="sidebar" ref={sidebarRef}>
+          {/* Mobile close button */}
+          <span className="sidebar-close" style={{ display: window.innerWidth <= 600 ? "block" : "none" }} onClick={() => setShowSidebar(false)}>&times;</span>
           <div style={{ fontSize: "1.5rem", fontWeight: "bold" }}>Filtros</div>
           <input
             type="text"
@@ -163,8 +254,8 @@ function App() {
                 textAlign: "center",
                 boxShadow: "0px 2px 5px rgba(0,0,0,0.1)",
                 background: "#fff",
+                minWidth: "200px",
                 maxWidth: "100%",
-                minWidth: "300px",
               }}
             >
               {item.Imagen && (
