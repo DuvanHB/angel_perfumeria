@@ -231,10 +231,13 @@ function App() {
             <button
               onClick={() => setFilter("hombre")}
               style={{
-                background: "none",
-                border: "none",
+                background: filter === "hombre" ? "#e0f7fa" : "none",
+                border: filter === "hombre" ? "2px solid #0097a7" : "none",
                 cursor: "pointer",
                 textAlign: "center",
+                borderRadius: "8px",
+                boxShadow: filter === "hombre" ? "0 0 8px #0097a733" : "none",
+                fontWeight: filter === "hombre" ? "bold" : "normal"
               }}
             >
               <img src={hombreIcon} alt="Hombre" style={{ width: "40px", height: "40px" }} />
@@ -243,10 +246,13 @@ function App() {
             <button
               onClick={() => setFilter("mujer")}
               style={{
-                background: "none",
-                border: "none",
+                background: filter === "mujer" ? "#fce4ec" : "none",
+                border: filter === "mujer" ? "2px solid #d81b60" : "none",
                 cursor: "pointer",
                 textAlign: "center",
+                borderRadius: "8px",
+                boxShadow: filter === "mujer" ? "0 0 8px #d81b6033" : "none",
+                fontWeight: filter === "mujer" ? "bold" : "normal"
               }}
             >
               <img src={mujerIcon} alt="Mujer" style={{ width: "40px", height: "40px" }} />
@@ -255,10 +261,13 @@ function App() {
             <button
               onClick={() => setFilter("unisex")}
               style={{
-                background: "none",
-                border: "none",
+                background: filter === "unisex" ? "#f3e5f5" : "none",
+                border: filter === "unisex" ? "2px solid #7c4dff" : "none",
                 cursor: "pointer",
                 textAlign: "center",
+                borderRadius: "8px",
+                boxShadow: filter === "unisex" ? "0 0 8px #7c4dff33" : "none",
+                fontWeight: filter === "unisex" ? "bold" : "normal"
               }}
             >
               <img src={unisexIcon} alt="Unisex" style={{ width: "40px", height: "40px" }} />
@@ -325,46 +334,52 @@ function App() {
         </div>
         {/* Cards */}
         <div className="cards-grid">
-          {filteredData.map((item, i) => (
-            <div
-              key={i}
-              style={{
-                border: "1px solid #ddd",
-                borderRadius: "10px",
-                padding: "15px",
-                textAlign: "center",
-                boxShadow: "0px 2px 5px rgba(0,0,0,0.1)",
-                background: "#fff",
-                minWidth: "200px",
-                maxWidth: "100%",
-                maxHeight: "200px",
-              }}
-            >
-              {item.Imagen && (
-                <img
-                  src={item.Imagen}
-                  alt={item.Nombre}
-                  style={{ width: "100px", height: "100px", objectFit: "contain" }}
-                />
-              )}
-              <h4
-                style={{
-                  fontSize: "1.1rem",
-                  fontWeight: "bold",
-                  whiteSpace: "nowrap",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  margin: "0.5em 0"
-                }}
-                title={item.Nombre}
-              >
-                {item.Nombre}
-              </h4>
-              <p>
-                {item.Marca} | {item.Genero} | {item.Cantidad}ml
-              </p>
+          {filteredData.length === 0 ? (
+            <div style={{ gridColumn: '1/-1', textAlign: 'center', padding: '2rem', color: '#888', fontSize: '1.2rem' }}>
+              Ningún item disponible con estos filtros
             </div>
-          ))}
+          ) : (
+            filteredData.map((item, i) => (
+              <div
+                key={i}
+                style={{
+                  border: "1px solid #ddd",
+                  borderRadius: "10px",
+                  padding: "15px",
+                  textAlign: "center",
+                  boxShadow: "0px 2px 5px rgba(0,0,0,0.1)",
+                  background: "#fff",
+                  minWidth: "200px",
+                  maxWidth: "100%",
+                  maxHeight: "200px",
+                }}
+              >
+                {item.Imagen && (
+                  <img
+                    src={item.Imagen}
+                    alt={item.Nombre}
+                    style={{ width: "100px", height: "100px", objectFit: "contain" }}
+                  />
+                )}
+                <h4
+                  style={{
+                    fontSize: "1.1rem",
+                    fontWeight: "bold",
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    margin: "0.5em 0"
+                  }}
+                  title={item.Nombre}
+                >
+                  {item.Nombre}
+                </h4>
+                <p>
+                  {item.Marca} | {item.Genero} | {item.Cantidad}ml
+                </p>
+              </div>
+            ))
+          )}
         </div>
       </div>
     </>
