@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useRef } from "react";
-import instagramIcon from "./assets/img/male.png"; // Add your Instagram icon to assets/img/
+
 import Papa from "papaparse";
 import hombreIcon from "./assets/img/male.png";
 import mujerIcon from "./assets/img/female.png";
 import unisexIcon from "./assets/img/unisex.png";
 import whatsappIcon from "./assets/img/whatsapp.png";
+import callIcon from "./assets/img/phone2.png";
+import instagramIcon from "./assets/img/instagram.png"; // Add your Instagram icon to assets/img/
 
 function App() {
   const [data, setData] = useState([]);
@@ -184,19 +186,6 @@ function App() {
           {/* Mobile close button */}
           <span className="sidebar-close" style={{ display: window.innerWidth <= 600 ? "block" : "none" }} onClick={() => setShowSidebar(false)}>&times;</span>
           <div style={{ fontSize: "1.5rem", fontWeight: "bold" }}>Filtros</div>
-          <input
-            type="text"
-            placeholder="Escribe un nombre..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            style={{
-              width: "100%",
-              padding: "8px",
-              marginTop: "10px",
-              borderRadius: "5px",
-              border: "1px solid #ccc",
-            }}
-          />
           <div
             style={{
               display: "flex",
@@ -240,7 +229,22 @@ function App() {
               <img src={unisexIcon} alt="Unisex" style={{ width: "40px", height: "40px" }} />
               <div>Unisex</div>
             </button>
+            
           </div>
+
+          <input
+            type="text"
+            placeholder="Escribe un nombre..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            style={{
+              width: "100%",
+              padding: "8px",
+              marginTop: "10px",
+              borderRadius: "5px",
+              border: "1px solid #ccc",
+            }}
+          />
         </div>
         {/* Cards */}
         <div className="cards-grid">
@@ -274,7 +278,7 @@ function App() {
                   rel="noopener noreferrer"
                 >
                   <img
-                    src={whatsappIcon}
+                    src={callIcon}
                     alt="WhatsApp"
                     style={{ width: "24px", height: "24px", verticalAlign: "middle" }}
                   />
