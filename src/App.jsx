@@ -113,6 +113,10 @@ function App() {
             box-shadow: 0 2px 8px rgba(0,0,0,0.04);
             border-radius: 10px;
             padding-bottom: 20px;
+            height: calc(100vh - 155px);
+            margin-bottom: 2rem;
+            box-sizing: border-box;
+            overflow-y: auto;
           }
           .burger {
             display: none;
