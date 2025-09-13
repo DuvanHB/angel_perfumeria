@@ -271,7 +271,19 @@ function App() {
                   style={{ width: "100px", height: "100px", objectFit: "contain" }}
                 />
               )}
-              <h4>{item.Nombre}</h4>
+              <h4
+                style={{
+                  fontSize: "1.1rem",
+                  fontWeight: "bold",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  margin: "0.5em 0"
+                }}
+                title={item.Nombre}
+              >
+                {item.Nombre}
+              </h4>
               <p>
                 {item.Marca} | {item.Genero} |{" "}
                 <a
