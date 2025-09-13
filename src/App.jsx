@@ -5,6 +5,7 @@ import Papa from "papaparse";
 import hombreIcon from "./assets/img/male.png";
 import mujerIcon from "./assets/img/female.png";
 import unisexIcon from "./assets/img/unisex.png";
+import whatsappIcon from "./assets/img/whatsapp.png";
 // import allIcon from "./assets/img/all.png"; // optional, for "Todos"
 
 function App() {
@@ -161,24 +162,19 @@ function App() {
             )}
             <h4>{item.Nombre}</h4>
             <p>
-              {item.Marca} | {item.Genero}
+              {item.Marca} | {item.Genero} |{" "}
+              <a
+                href={getWhatsappLink(item.Nombre)}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={whatsappIcon}
+                  alt="WhatsApp"
+                  style={{ width: "24px", height: "24px", verticalAlign: "middle" }}
+                />
+              </a>
             </p>
-            <a
-              href={getWhatsappLink(item.Nombre)}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "inline-block",
-                marginTop: "10px",
-                padding: "8px 12px",
-                backgroundColor: "#25D366",
-                color: "white",
-                borderRadius: "5px",
-                textDecoration: "none",
-              }}
-            >
-              WhatsApp
-            </a>
           </div>
         ))}
       </div>
