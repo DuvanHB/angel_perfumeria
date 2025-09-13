@@ -70,6 +70,7 @@ function App() {
             font-weight: bold;
             color: #222;
             letter-spacing: 1px;
+            padding: 1rem;
           }
           .header-icons {
             display: flex;
@@ -93,7 +94,7 @@ function App() {
           .sidebar {
             min-width: 0;
             position: sticky;
-            top: 70px;
+            top: 100px;
             align-self: start;
             z-index: 10;
             background: #fff;
