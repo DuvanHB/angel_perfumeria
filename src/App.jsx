@@ -7,7 +7,8 @@ import mujerIcon from "./assets/img/female.png";
 import unisexIcon from "./assets/img/unisex.png";
 import whatsappIcon from "./assets/img/whatsapp.png";
 import callIcon from "./assets/img/phone2.png";
-import instagramIcon from "./assets/img/instagram.png"; // Add your Instagram icon to assets/img/
+import instagramIcon from "./assets/img/instagram.png";
+import resetIcon from "./assets/img/reset24.png";
 
 function App() {
   const [data, setData] = useState([]);
@@ -192,7 +193,25 @@ function App() {
         <div className="sidebar" ref={sidebarRef}>
           {/* Mobile close button */}
           <span className="sidebar-close" style={{ display: window.innerWidth <= 600 ? "block" : "none" }} onClick={() => setShowSidebar(false)}>&times;</span>
-          <div style={{ fontSize: "1.5rem", fontWeight: "bold", padding: "1rem" }}>Filtros
+          <div  style={{ 
+            display: "flex", 
+            alignItems: "center", 
+            justifyContent: "space-between", 
+            fontSize: "1.5rem", 
+            fontWeight: "bold", 
+            padding: "1rem" 
+          }}>
+          <span> Filtros</span>
+          <img
+            src={resetIcon}
+            alt="Reset Filters"
+            style={{ width: "20px", height: "20px", cursor: "pointer" }}
+            onClick={() => {
+              setFilter("all");
+              setSelectedMarca("all");
+              setSearch("");
+            }}
+          />
           </div>
           <div
             style={{
