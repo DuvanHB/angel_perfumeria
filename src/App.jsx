@@ -1,69 +1,91 @@
 import { useEffect, useState } from "react";
+import Papa from "papaparse";
 
 function App() {
   const [data, setData] = useState([]);
+  const [filter, setFilter] = useState("all");
 
   useEffect(() => {
     const fetchSheet = async () => {
-      try {
-        const url =
-          "https://docs.google.com/spreadsheets/d/1eUiLXYR69TgmIr9TYs0CPvVcsyukjtp3tVTVTrFdMKQ/export?format=csv&gid=0";
+      const url =
+        "https://docs.google.com/spreadsheets/d/1eUiLXYR69TgmIr9TYs0CPvVcsyukjtp3tVTVTrFdMKQ/export?format=csv&gid=0";
 
-        const response = await fetch(url);
-        const text = await response.text();
+      const response = await fetch(url);
+      const text = await response.text();
 
-        console.log("Raw CSV:", text); // 🔍 check the CSV content
-
-        const rows = text.trim().split("\n").map((row) => row.split(","));
-        const headers = rows[0];
-        const jsonData = rows.slice(1).map((row) => {
-          let obj = {};
-          row.forEach((val, i) => {
-            obj[headers[i]] = val;
-          });
-          return obj;
-        });
-
-        console.log("Parsed JSON:", jsonData); // 🔍 check parsed data
-        setData(jsonData);
-      } catch (err) {
-        console.error("Error fetching sheet:", err);
-      }
+      const result = Papa.parse(text, { header: true });
+      console.log("Parsed data:", result.data); // 👀 Check here
+      setData(result.data);
     };
 
     fetchSheet();
   }, []);
 
+  // Filtered data
+  const filteredData =
+    filter === "all" ? data : data.filter((item) => item.Genero?.toLowerCase() === filter);
+
+  // Function for WhatsApp link
+  const getWhatsappLink = (nombre) => {
+    const phone = "573001112233"; // replace with your WhatsApp number
+    const message = encodeURIComponent(`Hola, estoy interesado en el perfume ${nombre}`);
+    return `https://wa.me/${phone}?text=${message}`;
+  };
+
   return (
-    <div className="p-4">
-      <h1>Google Sheet Data</h1>
-      {data.length === 0 && <p>Loading or no data found...</p>}
-      <table border="1" style={{ marginTop: "20px", borderCollapse: "collapse" }}>
-        <thead>
-          {data.length > 0 && (
-            <tr>
-              {Object.keys(data[0]).map((key) => (
-                <th key={key}>{key}</th>
-              ))}
-            </tr>
-          )}
-        </thead>
-        <tbody>
-          {data.map((row, i) => (
-            <tr key={i}>
-              {Object.values(row).map((val, j) => (
-                <td key={j}>
-                  {val.startsWith("http") ? (
-                    <img src={val} alt="img" width="50" />
-                  ) : (
-                    val
-                  )}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div style={{ display: "flex", padding: "20px" }}>
+      {/* Sidebar Filters */}
+      <aside style={{ width: "200px", marginRight: "20px" }}>
+        <h3>Filtrar por género</h3>
+        <ul style={{ listStyle: "none", padding: 0 }}>
+          <li><button onClick={() => setFilter("all")}>Todos</button></li>
+          <li><button onClick={() => setFilter("masculino")}>Hombre</button></li>
+          <li><button onClick={() => setFilter("femenino")}>Mujer</button></li>
+          <li><button onClick={() => setFilter("unisex")}>Unisex</button></li>
+        </ul>
+      </aside>
+
+      {/* Cards */}
+      <main style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px", flexGrow: 1 }}>
+        {filteredData.map((item, i) => (
+          <div
+            key={i}
+            style={{
+              border: "1px solid #ddd",
+              borderRadius: "10px",
+              padding: "15px",
+              textAlign: "center",
+              boxShadow: "0px 2px 5px rgba(0,0,0,0.1)",
+            }}
+          >
+            {item.Imagen && (
+              <img
+                src={item.Imagen}
+                alt={item.Nombre}
+                style={{ width: "100px", height: "100px", objectFit: "contain" }}
+              />
+            )}
+            <h4>{item.Nombre}</h4>
+            <p>{item.Marca} | {item.Genero}</p>
+            <a
+              href={getWhatsappLink(item.Nombre)}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-block",
+                marginTop: "10px",
+                padding: "8px 12px",
+                backgroundColor: "#25D366",
+                color: "white",
+                borderRadius: "5px",
+                textDecoration: "none",
+              }}
+            >
+              WhatsApp
+            </a>
+          </div>
+        ))}
+      </main>
     </div>
   );
 }
