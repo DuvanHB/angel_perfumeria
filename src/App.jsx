@@ -73,25 +73,35 @@ function App() {
             box-shadow: 0 2px 8px rgba(0,0,0,0.07);
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 10px 30px;
+            justify-content: center;
             min-height: 60px;
+            width: 100vw;
           }
           .header-title {
-            font-size: 2rem;
-            font-weight: bold;
+            font-size: 4.5rem;
+            font-family: 'Palace Script MT', 'Brush Script MT', cursive, sans-serif;
             color: #222;
             letter-spacing: 1px;
-            padding: 1rem;
+            text-align: center;
+            flex: 1;
           }
           .header-icons {
             display: flex;
             gap: 16px;
+            position: absolute;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
           }
           .header-icons img {
-            width: 32px;
-            height: 32px;
+            width: 40px;
+            height: 40px;
             cursor: pointer;
+          }
+          @media (max-width: 600px) {
+            .header-icons {
+              display: none !important;
+            }
           }
           .main-grid {
             display: grid;
@@ -181,13 +191,11 @@ function App() {
         `}
       </style>
       {/* Sticky Header */}
-      <header className="header">
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <button className="burger" onClick={() => setShowSidebar(true)}>
-            &#9776;
-          </button>
-          <span className="header-title">Angel perfumería</span>
-        </div>
+      <header className="header" style={{ position: 'sticky', top: 0, zIndex: 100 }}>
+        <button className="burger" style={{ position: 'absolute', left: 30, top: '50%', transform: 'translateY(-50%)' }} onClick={() => setShowSidebar(true)}>
+          &#9776;
+        </button>
+        <span className="header-title">Angel perfumería</span>
         <div className="header-icons">
           <a href="https://wa.me/573195769790" target="_blank" rel="noopener noreferrer">
             <img src={whatsappIcon} alt="WhatsApp" />
@@ -199,7 +207,7 @@ function App() {
       </header>
       <div className="main-grid">
         {/* Sidebar Filters */}
-        <div className="sidebar" ref={sidebarRef}>
+  <div className="sidebar" ref={sidebarRef} style={{ position: 'sticky', top: 120 }}>
           {/* Mobile close button */}
           <span className="sidebar-close" style={{ display: window.innerWidth <= 600 ? "block" : "none" }} onClick={() => setShowSidebar(false)}>&times;</span>
           <div  style={{ 
@@ -340,7 +348,23 @@ function App() {
               }}
             />
           </div>
+          {/* Social icons at bottom for mobile */}
+          <div className="sidebar-social" style={{ display: 'none', marginTop: '2rem', textAlign: 'center' }}>
+            <a href="https://wa.me/573195769790" target="_blank" rel="noopener noreferrer" style={{ margin: '0 10px' }}>
+              <img src={whatsappIcon} alt="WhatsApp" style={{ width: '40px', height: '40px' }} />
+            </a>
+            <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" style={{ margin: '0 10px' }}>
+              <img src={instagramIcon} alt="Instagram" style={{ width: '40px', height: '40px' }} />
+            </a>
+          </div>
         </div>
+        <style>{`
+          @media (max-width: 600px) {
+            .sidebar-social {
+              display: block !important;
+            }
+          }
+        `}</style>
         {/* Cards */}
         <div className="cards-grid">
           {filteredData.length === 0 ? (
