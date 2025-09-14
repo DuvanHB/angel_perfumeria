@@ -17,7 +17,9 @@ export default function Sidebar({
   search,
   setSearch,
   onReset,
-  setShowSidebar
+  setShowSidebar,
+  sortOrder,
+  setSortOrder
 }) {
   return (
     <div className="sidebar" style={{ position: 'sticky', top: 120 }}>
@@ -25,6 +27,35 @@ export default function Sidebar({
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "1.5rem", fontWeight: "bold", padding: "1rem", borderBottom: "1px solid rgb(221, 221, 221)" }}>
         <span> Filtros</span>
         <img src={resetIcon} alt="Reset Filters" style={{ width: "20px", height: "20px", cursor: "pointer" }} onClick={onReset} />
+      </div>
+      <div style={{fontSize: "1.2rem", fontWeight: "bold", padding: "0 1rem 0.5rem"}}>Ordenar por nombre</div>
+      <div style={{ display: "flex", justifyContent: "space-around", marginBottom: "10px" }}>
+        <button
+          onClick={() => setSortOrder && setSortOrder("asc")}
+          style={{
+            background: typeof sortOrder !== 'undefined' && sortOrder === "asc" ? "#e3f2fd" : "none",
+            border: typeof sortOrder !== 'undefined' && sortOrder === "asc" ? "2px solid #1976d2" : "none",
+            cursor: "pointer",
+            textAlign: "center",
+            borderRadius: "8px",
+            boxShadow: typeof sortOrder !== 'undefined' && sortOrder === "asc" ? "0 0 8px #1976d233" : "none",
+            fontWeight: typeof sortOrder !== 'undefined' && sortOrder === "asc" ? "bold" : "normal",
+            padding: "8px 16px"
+          }}
+        >A-Z</button>
+        <button
+          onClick={() => setSortOrder && setSortOrder("desc")}
+          style={{
+            background: typeof sortOrder !== 'undefined' && sortOrder === "desc" ? "#fbe9e7" : "none",
+            border: typeof sortOrder !== 'undefined' && sortOrder === "desc" ? "2px solid #d84315" : "none",
+            cursor: "pointer",
+            textAlign: "center",
+            borderRadius: "8px",
+            boxShadow: typeof sortOrder !== 'undefined' && sortOrder === "desc" ? "0 0 8px #d8431533" : "none",
+            fontWeight: typeof sortOrder !== 'undefined' && sortOrder === "desc" ? "bold" : "normal",
+            padding: "8px 16px"
+          }}
+        >Z-A</button>
       </div>
       <div style={{fontSize: "1.2rem", fontWeight: "bold", padding: "1rem"}}>Género</div>
       <div style={{ display: "flex", justifyContent: "space-around", marginBottom: "5px" }}>

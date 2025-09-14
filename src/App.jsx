@@ -13,6 +13,7 @@ function App() {
   const [showSidebar, setShowSidebar] = useState(false); // For mobile burger
   const [selectedMarca, setSelectedMarca] = useState("all");
   const [selectedCantidad, setSelectedCantidad] = useState("all");
+  const [sortOrder, setSortOrder] = useState("asc");
 
   useEffect(() => {
     const fetchSheet = async () => {
@@ -30,8 +31,8 @@ function App() {
   const marcas = Array.from(new Set(data.map(item => item.Marca).filter(Boolean)));
   // Get distinct cantidades
   const cantidades = Array.from(new Set(data.map(item => item.Cantidad).filter(Boolean)));
-  // Filter data
-  const filteredData = data.filter((item) => {
+  // Filter and sort data
+  let filteredData = data.filter((item) => {
     const matchesGenero =
       filter === "all" || item.Genero?.toLowerCase() === filter;
     const matchesSearch = item.Nombre?.toLowerCase().includes(search.toLowerCase());
@@ -41,6 +42,11 @@ function App() {
       selectedCantidad === "all" || String(item.Cantidad) === String(selectedCantidad);
     return matchesGenero && matchesSearch && matchesMarca && matchesCantidad;
   });
+  if (sortOrder === "asc") {
+    filteredData = [...filteredData].sort((a, b) => a.Nombre.localeCompare(b.Nombre));
+  } else if (sortOrder === "desc") {
+    filteredData = [...filteredData].sort((a, b) => b.Nombre.localeCompare(a.Nombre));
+  }
 
   return (
     <>
@@ -206,9 +212,12 @@ function App() {
             setSelectedMarca("all");
             setSelectedCantidad("all");
             setSearch("");
+            setSortOrder("asc");
           }}
           showSidebar={showSidebar}
           setShowSidebar={setShowSidebar}
+          sortOrder={sortOrder}
+          setSortOrder={setSortOrder}
         />
         <style>{`
           @media (max-width: 600px) {
