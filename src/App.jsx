@@ -134,6 +134,7 @@ function App() {
             background: linear-gradient(45deg, #FFD700, #FFA500, #DAA520, #FFD700);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+
             padding: 0;
           }
           .cards-grid {
@@ -183,7 +184,7 @@ function App() {
             .sidebar-close {
               display: block;
               text-align: right;
-              padding: 0 10px;
+              padding: 0px 10px;
               font-size: 2rem;
               cursor: pointer;
             }
@@ -197,11 +198,11 @@ function App() {
         </button>
         <span className="header-title">Ángel<span style={{paddingLeft: "1.5rem"}}>perfumería</span></span>
         <div className="header-icons">
-          <a href="https://wa.me/573132755194" target="_blank" rel="noopener noreferrer">
-            <img src={whatsappIcon} alt="WhatsApp" style={{ width: '40px', height: '40px' }} />
+          <a href="https://wa.me/573195769790" target="_blank" rel="noopener noreferrer">
+            <img src={whatsappIcon} alt="WhatsApp" />
           </a>
           <a href="https://www.instagram.com/fragancias_de_angel?igsh=MWt3ZXN1dXNnbDI5bQ==" target="_blank" rel="noopener noreferrer">
-            <img src={instagramIcon} alt="Instagram" style={{ width: '40px', height: '40px' }}/>
+            <img src={instagramIcon} alt="Instagram" />
           </a>
         </div>
       </header>
@@ -350,7 +351,7 @@ function App() {
           </div>
           {/* Social icons at bottom for mobile */}
           <div className="sidebar-social" style={{ display: 'none', marginTop: '2rem', textAlign: 'center' }}>
-            <a href="https://wa.me/573132755194" target="_blank" rel="noopener noreferrer" style={{ margin: '0 10px' }}>
+            <a href="https://wa.me/573195769790" target="_blank" rel="noopener noreferrer" style={{ margin: '0 10px' }}>
               <img src={whatsappIcon} alt="WhatsApp" style={{ width: '50px', height: '50px' }} />
             </a>
             <a href="https://www.instagram.com/fragancias_de_angel?igsh=MWt3ZXN1dXNnbDI5bQ==" target="_blank" rel="noopener noreferrer" style={{ margin: '0 10px' }}>
