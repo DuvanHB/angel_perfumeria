@@ -130,6 +130,11 @@ function App() {
             font-size: 2rem;
             cursor: pointer;
             margin-right: 10px;
+
+            background: linear-gradient(45deg, #FFD700, #FFA500, #DAA520, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding: 0;
           }
           .cards-grid {
             display: grid;
@@ -178,8 +183,8 @@ function App() {
             .sidebar-close {
               display: block;
               text-align: right;
-              padding: 10px;
-              font-size: 1.5rem;
+              padding: 0 10px;
+              font-size: 2rem;
               cursor: pointer;
             }
           }
@@ -187,7 +192,7 @@ function App() {
       </style>
       {/* Sticky Header */}
       <header className="header" style={{ position: 'sticky', top: 0, zIndex: 100 }}>
-        <button className="burger" style={{ position: 'absolute', left: 30, top: '50%', transform: 'translateY(-50%)' }} onClick={() => setShowSidebar(true)}>
+        <button className="burger" style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)' }} onClick={() => setShowSidebar(true)}>
           &#9776;
         </button>
         <span className="header-title">Ángel<span style={{paddingLeft: "1.5rem"}}>perfumería</span></span>
