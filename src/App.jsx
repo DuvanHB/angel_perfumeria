@@ -370,8 +370,19 @@ function App() {
         {/* Cards */}
         <div className="cards-grid">
           {filteredData.length === 0 ? (
-            <div style={{ gridColumn: '1/-1', textAlign: 'center', padding: '2rem', color: '#888', fontSize: '1.2rem' }}>
-              Ningún item disponible con estos filtros
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "100%", // or 100% if parent has height
+                gridColumn: "1/-1",
+                color: "#888",
+                fontSize: "1.2rem",
+                textAlign: "center",
+              }}
+            >
+              No encontramos perfumes que coincidan con tu selección.
             </div>
           ) : (
             filteredData.map((item, i) => (
