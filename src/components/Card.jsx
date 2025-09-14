@@ -1,4 +1,9 @@
 export default function Card({ item }) {
+  const handleClick = () => {
+    const message = `Buen día, estoy interesado en obtener más información del perfume ${item.Nombre}`;
+    const url = `https://wa.me/573132755194?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  };
   return (
     <div
       style={{
@@ -11,7 +16,10 @@ export default function Card({ item }) {
         minWidth: "200px",
         maxWidth: "100%",
         maxHeight: "200px",
+        cursor: "pointer"
       }}
+      onClick={handleClick}
+      title={`Solicitar información de ${item.Nombre}`}
     >
       {item.Imagen && (
         <img
