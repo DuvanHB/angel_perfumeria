@@ -187,7 +187,7 @@ function App() {
             .sidebar-close {
               display: block;
               text-align: right;
-              padding: 10px;
+              padding: 0 10px;
               font-size: 2rem;
               cursor: pointer;
             }

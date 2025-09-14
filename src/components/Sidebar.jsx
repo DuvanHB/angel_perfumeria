@@ -22,12 +22,22 @@ export default function Sidebar({
   setSortOrder
 }) {
   return (
-    <div className="sidebar" style={{ position: 'sticky', top: 120 }}>
+  <div className="sidebar" style={{ position: 'sticky', top: 120 }}>
       <span className="sidebar-close" style={{ display: window.innerWidth <= 600 ? "block" : "none" }} onClick={() => setShowSidebar(false)}>&times;</span>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "1.5rem", fontWeight: "bold", padding: "1rem", borderBottom: "1px solid rgb(221, 221, 221)" }}>
+  <div className="sidebar-filter-header" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "1.5rem", fontWeight: "bold", padding: "1rem", borderBottom: "1px solid rgb(221, 221, 221)" }}>
         <span> Filtros</span>
         <img src={resetIcon} alt="Reset Filters" style={{ width: "20px", height: "20px", cursor: "pointer" }} onClick={onReset} />
       </div>
+      <style>{`
+        @media (max-width: 600px) {
+          .sidebar {
+            top: 110px !important;
+          }
+          .sidebar-filter-header {
+            padding: 0rem 1rem 1rem !important;
+          }
+        }
+      `}</style>
       <div style={{fontSize: "1.2rem", fontWeight: "bold", padding: "1rem"}}>Ordenar por nombre</div>
       <div style={{ display: "flex", justifyContent: "space-around", marginBottom: "10px" }}>
         <button
