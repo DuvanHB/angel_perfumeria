@@ -6,7 +6,6 @@ import hombreIcon from "./assets/img/male.png";
 import mujerIcon from "./assets/img/female.png";
 import unisexIcon from "./assets/img/unisex.png";
 import whatsappIcon from "./assets/img/whatsapp.png";
-import callIcon from "./assets/img/phone2.png";
 import instagramIcon from "./assets/img/instagram.png";
 import resetIcon from "./assets/img/reset24.png";
 
@@ -46,12 +45,6 @@ function App() {
       selectedCantidad === "all" || String(item.Cantidad) === String(selectedCantidad);
     return matchesGenero && matchesSearch && matchesMarca && matchesCantidad;
   });
-
-  const getWhatsappLink = (nombre) => {
-    const phone = "573195769790";
-    const message = encodeURIComponent(`Hola, estoy interesado en el perfume ${nombre}`);
-    return `https://wa.me/${phone}?text=${message}`;
-  };
 
   return (
     <>
