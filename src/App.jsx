@@ -145,6 +145,7 @@ function App() {
             gap: 20px;
             width: 96%;
             margin: 0 auto;
+            justify-content: center;
           }
           @media (max-width: 900px) {
             .main-grid {
