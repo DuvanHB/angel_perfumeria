@@ -51,7 +51,7 @@ export default function Sidebar({
       <div style={{fontSize: "1.2rem", fontWeight: "bold", padding: "0 1rem 0.5rem"}}>Cantidad</div>
       <select value={selectedCantidad} onChange={e => setSelectedCantidad(e.target.value)} style={{ width: "calc(100% - 2rem)", padding: "10px", margin: "0 1rem 10px 1rem", borderRadius: "5px", border: "1px solid #ccc", fontSize: "1rem", height: "40px", boxSizing: "border-box" }}>
         <option value="all">Todas las cantidades</option>
-        {cantidades.map((cantidad, idx) => (
+        {[...cantidades].sort((a, b) => Number(a) - Number(b)).map((cantidad, idx) => (
           <option key={idx} value={cantidad}>{cantidad}ml</option>
         ))}
       </select>
