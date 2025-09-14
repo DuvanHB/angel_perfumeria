@@ -197,11 +197,11 @@ function App() {
         </button>
         <span className="header-title">Ángel<span style={{paddingLeft: "1.5rem"}}>perfumería</span></span>
         <div className="header-icons">
-          <a href="https://wa.me/573195769790" target="_blank" rel="noopener noreferrer">
-            <img src={whatsappIcon} alt="WhatsApp" />
+          <a href="https://wa.me/573132755194" target="_blank" rel="noopener noreferrer">
+            <img src={whatsappIcon} alt="WhatsApp" style={{ width: '40px', height: '40px' }} />
           </a>
           <a href="https://www.instagram.com/fragancias_de_angel?igsh=MWt3ZXN1dXNnbDI5bQ==" target="_blank" rel="noopener noreferrer">
-            <img src={instagramIcon} alt="Instagram" />
+            <img src={instagramIcon} alt="Instagram" style={{ width: '40px', height: '40px' }}/>
           </a>
         </div>
       </header>
@@ -350,11 +350,11 @@ function App() {
           </div>
           {/* Social icons at bottom for mobile */}
           <div className="sidebar-social" style={{ display: 'none', marginTop: '2rem', textAlign: 'center' }}>
-            <a href="https://wa.me/573195769790" target="_blank" rel="noopener noreferrer" style={{ margin: '0 10px' }}>
-              <img src={whatsappIcon} alt="WhatsApp" style={{ width: '40px', height: '40px' }} />
+            <a href="https://wa.me/573132755194" target="_blank" rel="noopener noreferrer" style={{ margin: '0 10px' }}>
+              <img src={whatsappIcon} alt="WhatsApp" style={{ width: '50px', height: '50px' }} />
             </a>
-            <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" style={{ margin: '0 10px' }}>
-              <img src={instagramIcon} alt="Instagram" style={{ width: '40px', height: '40px' }} />
+            <a href="https://www.instagram.com/fragancias_de_angel?igsh=MWt3ZXN1dXNnbDI5bQ==" target="_blank" rel="noopener noreferrer" style={{ margin: '0 10px' }}>
+              <img src={instagramIcon} alt="Instagram" style={{ width: '50px', height: '50px' }} />
             </a>
           </div>
         </div>
