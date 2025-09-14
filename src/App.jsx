@@ -65,12 +65,12 @@ function App() {
             padding: 0;
             box-sizing: border-box;
           }
-          .header {
+          header {
             position: sticky;
             top: 0;
             z-index: 100;
-            background: #fff;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            background: linear-gradient(180deg, #0D0D0D, #1C1C1C, #000000);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -80,7 +80,9 @@ function App() {
           .header-title {
             font-size: 4.5rem;
             font-family: 'Palace Script MT', 'Brush Script MT', cursive, sans-serif;
-            color: #222;
+            background: linear-gradient(45deg, #FFD700, #FFA500, #DAA520, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             letter-spacing: 1px;
             text-align: center;
             flex: 1;
@@ -138,7 +140,7 @@ function App() {
           }
           .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
             gap: 20px;
             width: 96%;
             margin: 0 auto;
@@ -160,7 +162,7 @@ function App() {
               padding: 5px;
             }
             .cards-grid {
-              grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+              grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
               gap: 10px;
             }
             .burger {
@@ -195,12 +197,12 @@ function App() {
         <button className="burger" style={{ position: 'absolute', left: 30, top: '50%', transform: 'translateY(-50%)' }} onClick={() => setShowSidebar(true)}>
           &#9776;
         </button>
-        <span className="header-title">Angel perfumería</span>
+        <span className="header-title">Ángel<span style={{paddingLeft: "1.5rem"}}>perfumería</span></span>
         <div className="header-icons">
           <a href="https://wa.me/573195769790" target="_blank" rel="noopener noreferrer">
             <img src={whatsappIcon} alt="WhatsApp" />
           </a>
-          <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.instagram.com/fragancias_de_angel?igsh=MWt3ZXN1dXNnbDI5bQ==" target="_blank" rel="noopener noreferrer">
             <img src={instagramIcon} alt="Instagram" />
           </a>
         </div>
