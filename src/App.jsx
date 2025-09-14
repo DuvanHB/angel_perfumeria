@@ -163,6 +163,7 @@ function App() {
             .cards-grid {
               grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
               gap: 10px;
+              justify-content: center;
             }
             .burger {
               display: block;
@@ -184,8 +185,8 @@ function App() {
             .sidebar-close {
               display: block;
               text-align: right;
-              padding: 0px 10px;
-              font-size: 2rem;
+              padding: 10px;
+              font-size: 1.5rem;
               cursor: pointer;
             }
           }
