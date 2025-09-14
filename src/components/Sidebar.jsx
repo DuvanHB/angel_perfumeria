@@ -92,7 +92,7 @@ export default function Sidebar({
         <input type="text" placeholder="Nombre" value={search} onChange={e => setSearch(e.target.value)} style={{ width: 'calc(100% - 2rem)', boxSizing: 'border-box', padding: '10px', borderRadius: '5px', border: '1px solid #ccc', margin: '0 1rem 10px 1rem', height: '40px' }} />
       </div>
       <div className="sidebar-social" style={{ display: 'none', marginTop: '0', textAlign: 'center' }}>
-        <a href="https://wa.me/573195769790" target="_blank" rel="noopener noreferrer" style={{ margin: '0 10px' }}>
+        <a href="https://wa.me/573132755194" target="_blank" rel="noopener noreferrer" style={{ margin: '0 10px' }}>
           <img src={whatsappIcon} alt="WhatsApp" style={{ width: '50px', height: '50px' }} />
         </a>
         <a href="https://www.instagram.com/fragancias_de_angel?igsh=MWt3ZXN1dXNnbDI5bQ==" target="_blank" rel="noopener noreferrer" style={{ margin: '0 10px' }}>

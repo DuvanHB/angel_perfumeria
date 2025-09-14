@@ -9,7 +9,7 @@ export default function Header({ onBurgerClick }) {
       </button>
   <span className="header-title">Ángel<span className="header-subtitle-desktop" style={{paddingLeft: "1.5rem"}}>perfumería</span></span>
       <div className="header-icons">
-        <a href="https://wa.me/573195769790" target="_blank" rel="noopener noreferrer">
+        <a href="https://wa.me/573132755194" target="_blank" rel="noopener noreferrer">
           <img src={whatsappIcon} alt="WhatsApp" />
         </a>
         <a href="https://www.instagram.com/fragancias_de_angel?igsh=MWt3ZXN1dXNnbDI5bQ==" target="_blank" rel="noopener noreferrer">
