@@ -4,7 +4,7 @@ import instagramIcon from "../assets/img/instagram.png";
 export default function Header({ onBurgerClick }) {
   return (
     <header className="header" style={{ position: 'sticky', top: 0, zIndex: 100 }}>
-      <button className="burger" style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)' }} onClick={onBurgerClick}>
+      <button className="burger" style={{ position: 'absolute', left: 30, top: '50%', transform: 'translateY(-50%)' }} onClick={onBurgerClick}>
         &#9776;
       </button>
   <span className="header-title">Ángel<span className="header-subtitle-desktop" style={{paddingLeft: "1.5rem"}}>perfumería</span></span>
