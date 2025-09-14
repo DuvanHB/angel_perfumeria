@@ -28,13 +28,13 @@ export default function Sidebar({
         <span> Filtros</span>
         <img src={resetIcon} alt="Reset Filters" style={{ width: "20px", height: "20px", cursor: "pointer" }} onClick={onReset} />
       </div>
-      <div style={{fontSize: "1.2rem", fontWeight: "bold", padding: "0 1rem 0.5rem"}}>Ordenar por nombre</div>
+      <div style={{fontSize: "1.2rem", fontWeight: "bold", padding: "1rem"}}>Ordenar por nombre</div>
       <div style={{ display: "flex", justifyContent: "space-around", marginBottom: "10px" }}>
         <button
           onClick={() => setSortOrder && setSortOrder("asc")}
           style={{
             background: typeof sortOrder !== 'undefined' && sortOrder === "asc" ? "#e3f2fd" : "none",
-            border: typeof sortOrder !== 'undefined' && sortOrder === "asc" ? "2px solid #1976d2" : "none",
+            border: typeof sortOrder !== 'undefined' && sortOrder === "asc" ? "2px solid #1976d2" : "1px solid black",
             cursor: "pointer",
             textAlign: "center",
             borderRadius: "8px",
@@ -47,7 +47,7 @@ export default function Sidebar({
           onClick={() => setSortOrder && setSortOrder("desc")}
           style={{
             background: typeof sortOrder !== 'undefined' && sortOrder === "desc" ? "#fbe9e7" : "none",
-            border: typeof sortOrder !== 'undefined' && sortOrder === "desc" ? "2px solid #d84315" : "none",
+            border: typeof sortOrder !== 'undefined' && sortOrder === "desc" ? "2px solid #d84315" : "1px solid black",
             cursor: "pointer",
             textAlign: "center",
             borderRadius: "8px",
@@ -57,7 +57,7 @@ export default function Sidebar({
           }}
         >Z-A</button>
       </div>
-      <div style={{fontSize: "1.2rem", fontWeight: "bold", padding: "1rem"}}>Género</div>
+      <div style={{fontSize: "1.2rem", fontWeight: "bold", padding: "0 1rem 0.5rem"}}>Género</div>
       <div style={{ display: "flex", justifyContent: "space-around", marginBottom: "5px" }}>
         <button onClick={() => setFilter("hombre")} style={{ background: filter === "hombre" ? "#e0f7fa" : "none", border: filter === "hombre" ? "2px solid #0097a7" : "none", cursor: "pointer", textAlign: "center", borderRadius: "8px", boxShadow: filter === "hombre" ? "0 0 8px #0097a733" : "none", fontWeight: filter === "hombre" ? "bold" : "normal" }}>
           <img src={hombreIcon} alt="Hombre" style={{ width: "40px", height: "40px" }} />
@@ -72,6 +72,7 @@ export default function Sidebar({
           <div>Unisex</div>
         </button>
       </div>
+      
       <div style={{fontSize: "1.2rem", fontWeight: "bold", padding: "0 1rem 0.5rem"}}>Marca</div>
       <select value={selectedMarca} onChange={e => setSelectedMarca(e.target.value)} style={{ width: "calc(100% - 2rem)", padding: "10px", margin: "0 1rem 10px 1rem", borderRadius: "5px", border: "1px solid #ccc", fontSize: "1rem", height: "40px", boxSizing: "border-box" }}>
         <option value="all">Todas las marcas</option>

@@ -188,7 +188,7 @@ function App() {
               display: block;
               text-align: right;
               padding: 10px;
-              font-size: 1.5rem;
+              font-size: 2rem;
               cursor: pointer;
             }
           }
